@@ -1,0 +1,188 @@
+<div class="navigation col-lg-12">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand"> {{ title }} </a>
+      </div>
+
+      <ul class="nav navbar navbar-nav navbar-right">
+
+        <li>
+          <a [routerLink]="['/login']" [routerLinkActive]="['active']"> Login </a>
+          <span class="glyphicon glyphicon-log-in"> </span>
+        </li>
+
+      </ul>
+
+
+      <!-- 
+        =========================================================
+        Panel de Alumno solicitante de citas
+        =========================================================
+       -->
+
+      <ul class="nav navbar-nav" *ngIf="identity.role === 'ALUMNO_ROLE'">
+
+        <li>
+          <span class="glyphicon glyphicon-home"> </span>
+          <a [routerLink]="['/home']" [routerLinkActive]="['active']"> Inicio </a>
+        </li>
+
+      </ul>
+
+
+      <div class="container-fluid" *ngIf="identity.role === 'ALUMNO_ROLE'">
+        <div class="row header-section">
+          <span>Selecciona la carrera a la que haras la solicitud</span>
+        </div>
+
+        <div class="row">
+
+          <div id="seccioncarreras">
+            <select id="carreras">
+              <option value=""></option>
+              <option *ngFor="let carrera of carreras" [value]="carrera._id"> {{ carrera.nombre }} </option>
+            </select>
+          </div>
+
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+
+            <div class="row card">
+
+              <div class="col-sm-12">
+                <h4>Upload Section</h4>
+
+                <div id="fileSelector">
+                  <!--  <input type="file" name="fileUpload" id="fileUpload" ng2FileSelect [uploader]="uploader"> -->
+                  <input (change)="seleccionImagen($event.target.files[0])" type="file" id="files">
+                  <hr>
+                </div>
+                <div>
+                  <!-- <div class="row uploadList" *ngFor="let item of uploader.queue"> -->
+
+                  <div class="col-sm-4">
+                    <!-- <div class="progress">
+                        <div class="progress-bar bg-success" [ngStyle]="{'width':item.progress+'%'}"></div>
+                      </div> -->
+                  </div>
+                  <div class="col-sm-4">
+                    <button (click)="guardarSubida()" [disabled]="!imagenSubir" type="button" class="btn btn-success waves-effect waves-light m-r-10">
+                      <i class="fa fa-save"></i> Enviar Solicitud
+                    </button>
+                    <!-- <button type="button" class="btn btn-dark" (click)="item.upload()">Upload</button> -->
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                  </div>
+                  <!--  </div> -->
+                </div>
+                <!--  <div class="row" *ngIf="uploader?.queue?.length > 0">
+                  <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()">Upload All</button>
+                </div> -->
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+
+      <!-- 
+        =========================================================
+        Panel de administrador del colegio
+        =========================================================
+       -->
+
+      <ul class="nav navbar-nav" *ngIf="identity.role === 'ADMIN_ROLE'">
+
+        <li>
+          <span class="glyphicon glyphicon-home"> </span>
+          <a [routerLink]="['/home']" [routerLinkActive]="['active']"> Inicio Maestro </a>
+        </li>
+
+        <li>
+          <a [routerLink]="['/registrar']" [routerLinkActive]="['active']"> otro </a>
+          <span class="glyphicon glyphicon-user"> </span>
+        </li>
+
+        <li>
+          <a [routerLink]="['/registro-curso']" [routerLinkActive]="['active']"> Maestro </a>
+          <span class="glyphicon glyphicon-plus"> </span>
+        </li>
+
+      </ul>
+
+      <br>
+      <hr>
+
+      <div class="container-fluid" *ngIf="identity.role === 'ADMIN_ROLE'">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-right">
+                  <button type="button" class="btn waves-effect waves-light btn-rounded btn-primary" [routerLink]="['/medico/nuevo']">
+                    <i class="fa fa-plus"></i> Crear Medico </button>
+                </div>
+              </div>
+              <h3 class="card-title"> Solicitudes Registradas
+                <!--  ( <small>{{ total }}</small> ) -->
+              </h3>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Bolsa Id</th>
+                    <th>Alumno</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let solicitud of solicitudes">
+                    <!-- <td>
+                    <file [src]="medico.img | imagen: 'medico'" width="50" height="50" class="img-circle">
+                  </td> -->
+
+                    <td>
+                      {{ solicitud._id }}
+
+                    </td>
+                    <td> {{ solicitud.bolsa }} </td>
+                    <td> {{ solicitud.alumno['nombre'] }} </td>
+
+                    <td>
+                      <button class="btn btn-primary" (click)="obtenerArchivoSolicitud(solicitud)"> <i class="fa fa-file-archive-o"></i></button>
+                      <a class="btn btn-danger" routerLinkActive="active" [routerLink]="['/cita', solicitud.alumno['_id']]">
+                        <i class="fa fa-calendar-plus-o"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <ul class="nav navbar navbar-right" *ngIf="identity">
+
+        <li class="dropdown open">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            {{ identity.nombre }} <span class="caret"> </span> </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-log-out"></span>
+                Cerrar Sesion
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+      </ul>
+
+    </div>
+  </nav>
+
+</div>
