@@ -6,7 +6,7 @@ const Bolsa = require('../models/bolsa');
 
 
 exports.postBolsa = (req, res) => {
-    
+
     let body = req.body;
 
     const bolsa = new Bolsa({
@@ -14,7 +14,7 @@ exports.postBolsa = (req, res) => {
         bolsa: body.bolsa
     });
 
-    bolsa.save( (err, bolsaSaved) => {
+    bolsa.save((err, bolsaSaved) => {
         if (err) {
             res.status(500).json({
                 ok: false,
@@ -78,7 +78,7 @@ exports.getBolsas = (req, res) => {
     if (req.query.nombre) {
         query.nombre = req.query.nombre;
     }
-    Bolsas.find(query, (err, bolsas) => {
+    Bolsa.find(query, (err, bolsas) => {
 
         if (err) {
             res.status(500).json({
@@ -135,7 +135,7 @@ exports.getBolsa = (req, res) => {
 
 }
 
-exports.deleteBolsa =  (req, res) => {
+exports.deleteBolsa = (req, res) => {
     var id = req.params.id;
 
     Bolsa.findByIdAndDelete(id, (err, bolsaDeleted) => {

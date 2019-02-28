@@ -8,7 +8,8 @@ let citaSchema = new Schema({
         required: [true, 'La fecha y hora de la cita es requerida!!']
     },
     solicitud: {
-        type: Schema.Types.ObjectId,	
+        type: Schema.Types.ObjectId,
+        unique: true,	
         ref: 'Solicitud',	
         required: [true, 'El id de solicitud es un campo necesario']
     }

@@ -15,8 +15,9 @@ const transport = nodemailer.createTransport({
 
 exports.send = async (options) => {
     const mailOptions = {
-        from: `instituto taular <noreply@taular.com>`,
-        to: options.alumno.email,
+        from: `instituto taular <noreply@wesbos.com>`,
+        to: options.alumnoMail.email,
+        subject: options.subject,
         html: 'Hemos programado una cita para ti',
         text: 'Por favor se puntual'
     };

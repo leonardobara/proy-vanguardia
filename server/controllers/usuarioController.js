@@ -1,142 +1,81 @@
-const express = require('express');
 
-// const app = express();
+const Usuario = require('../models/usuario');
 
-const Carrera = require('../models/carrera');
+const bcrypt = require('bcryptjs');
 
-
-exports.postCarrera = (req, res) => {
+exports.postUsuario = (req, res) => {
 
     let body = req.body;
 
-    const carrera = new Carrera({
+    const usuario = new Usuario({
         nombre: body.nombre,
-        descripcion: body.descripcion,
-        plan: body.plan
+        email: body.email,
+        password: bcrypt.hashSync(body.password, 10),
+        role: body.role
     });
 
-    carrera.save((err, carreraSaved) => {
+    usuario.save((err, usuarioSaved) => {
         if (err) {
-            res.status(500).json({
-                ok: false,
-                err, err
-            });
-        }
-
-        if (!carreraSaved) {
             res.status(400).json({
                 ok: false,
-                err: err
+                mensaje: 'Error al crear usuario, error en el lado del cliente',
+                errors: err
             });
         }
 
 
         res.status(201).json({
             ok: true,
-            carrera: carreraSaved
+            mestro: usuarioSaved
         });
 
     });
 }
 
 
-exports.putCarrera = (req, res) => {
+exports.putUsuario = (req, res) => {
     var id = req.params.id;
     var body = req.body;
 
-    Carrera.findById(id, body, (err, carreraUpdated) => {
+    Usuario.findById(id, body, (err, usuarioUpdated) => {
 
         if (err) {
             res.status(500).json({
                 ok: false,
-                err, err
+                mensaje: 'Error al buscar usuario',
+                errors: err
             });
         }
 
-        if (!carreraUpdated) {
+        if (!usuarioUpdated) {
             res.status(400).json({
                 ok: false,
-                err: err
+                mensaje: 'Error al buscar medico en BDD, Error en el lado del servidor',
+                errors: { message: 'No existe un usuario con ese ID: ' + id }
             });
         }
 
-        carreraUpdated.nombre = body.nombre;
-        carreraUpdated.descripcion = body.descripcion;
-        carreraUpdated.save();
+        usuarioUpdated.nombre = body.nombre;
+        usuarioUpdated.email = body.email;
+        usuarioUpdated.save();
 
         res.status(201).json({
             ok: true,
-            carrera: carreraUpdated
+            usuario: usuarioUpdated
         });
 
     });
 
 }
 
-exports.getCarreras = (req, res) => {
+exports.getUsuarios = (req, res) => {
 
     var query = {};
 
     if (req.query.nombre) {
         query.nombre = req.query.nombre;
     }
-    Carrera.find(query, (err, carreras) => {
-
-        if (err) {
-            res.status(500).json({
-                ok: false,
-                err: err
-            });
-        }
-
-        if (!carreras) {
-            res.status(400).json({
-                ok: false,
-                err: err
-            });
-        }
-
-
-        res.send(carreras);
-    });
-
-}
-
-
-exports.getCarrera = (req, res) => {
-
-    var id = req.params.id;
-
-    Carrera.findById(id, (err, carrera) => {
-
-        if (err) {
-            res.status(500).json({
-                ok: false,
-                err: err
-            });
-        }
-
-        if (!carrera) {
-            res.status(400).json({
-                ok: false,
-                err: err
-            });
-        }
-
-
-        res.json({
-            ok: true,
-            carrera
-        });
-
-    });
-
-}
-
-exports.deleteCarrera = (req, res) => {
-    var id = req.params.id;
-
-    Carrera.findByIdAndDelete(id, (err, carreraDeleted) => {
+    Usuario.find(query, (err, usuarios) => {
 
         if (err) {
             res.status(500).json({
@@ -145,7 +84,67 @@ exports.deleteCarrera = (req, res) => {
             });
         }
 
-        if (!carreraDeleted) {
+        if (!usuarios) {
+            res.status(400).json({
+                ok: false,
+                err: err
+            });
+        }
+
+
+        res.status(200).json({
+            ok: true,
+            usuario: usuarios
+        });
+
+    });
+
+}
+
+
+exports.getUsuario = (req, res) => {
+
+    var id = req.params.id;
+
+    Usuario.findById(id, (err, usuario) => {
+
+        if (err) {
+            res.status(500).json({
+                ok: false,
+                err: err
+            });
+        }
+
+        if (!usuario) {
+            res.status(400).json({
+                ok: false,
+                err: err
+            });
+        }
+
+
+        res.status(200).json({
+            ok: true,
+            usuario: usuario
+        });
+
+    });
+
+}
+
+exports.deleteUsuario = (req, res) => {
+    var id = req.params.id;
+
+    Usuario.findByIdAndDelete(id, (err, usuarioDeleted) => {
+
+        if (err) {
+            res.status(500).json({
+                ok: false,
+                err: err
+            });
+        }
+
+        if (!usuarioDeleted) {
             res.status(400).json({
                 ok: false,
                 err: err
@@ -154,7 +153,7 @@ exports.deleteCarrera = (req, res) => {
 
         res.status(201).json({
             ok: true,
-            carrera: carreraDeleted
+            usuario: usuarioDeleted
         });
 
     });
