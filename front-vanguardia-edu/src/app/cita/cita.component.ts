@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../services/usuario.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { UsuarioService } from '../services/usuario.service';
+import { CitaService } from '../services/cita.service';
+
+import { Cita } from '../models/cita.model';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-cita',
@@ -11,12 +17,18 @@ export class CitaComponent implements OnInit {
 
   public id;
   alumno: any;
+  forma: FormGroup;
 
-  constructor(public usuarioServ: UsuarioService, public router: Router, public actRoute: ActivatedRoute) { }
+  constructor(public usuarioServ: UsuarioService, public router: Router,
+    public actRoute: ActivatedRoute, public citaServ: CitaService) { }
 
   ngOnInit() {
     this.id = this.actRoute.snapshot.paramMap.get('id');
     this.traerAlumno();
+
+    this.forma = new FormGroup({
+      fecha: new FormControl('', Validators.required)
+    });
   }
 
 
@@ -36,6 +48,24 @@ export class CitaComponent implements OnInit {
       console.log(error);
 
     }
+  }
+
+  citar() {
+    if (this.forma.invalid) {
+      return;
+    }
+
+    const cita = new Cita(
+      this.forma.value.fecha
+    );
+
+    this.citaServ.agendarCita(cita, this.id).subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
+  onBack() {
+    this.router.navigate(['/autenticado']);
   }
 
 }

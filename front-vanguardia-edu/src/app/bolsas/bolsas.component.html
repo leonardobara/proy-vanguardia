@@ -1,0 +1,8 @@
+<div class="col-md-8">
+  <h3>Seleccione carrera a cambiar bolsa estudiantil</h3>
+</div>
+
+
+<a *ngFor="let bolsa of bolsas" class="btn btn-md btn-default" style="min-width:220px; text-align:left; color:#333; text-transform: capitalize;"
+  routerLinkActive="active" [routerLink]="['/mantenimiento/bolsa', bolsa.nombre, bolsa._id]">
+  <i class="fa fa-sticky-note" aria-hidden="true" style="padding-top:5px;"></i>&nbsp;&nbsp;{{ bolsa.nombre }}</a>

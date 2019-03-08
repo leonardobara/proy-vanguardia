@@ -14,6 +14,7 @@ import { Observable, throwError } from 'rxjs';
 })
 export class CarreraService {
   private urlCarrera = 'http://localhost:3000/carrera';
+  private urlBolsa = 'http://localhost:3000/bolsa';
   constructor(private http: HttpClient) { }
 
   getCarreras() {
@@ -38,6 +39,13 @@ export class CarreraService {
       catchError((e: any) => throwError(e))
     );
   }
+
+  getBolsas() {
+    const get = this.http.get(this.urlBolsa);
+
+    return get;
+  }
+
 
   private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure

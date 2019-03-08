@@ -15,6 +15,8 @@
       </ul>
 
 
+
+
       <!-- 
         =========================================================
         Panel de Alumno solicitante de citas
@@ -92,24 +94,43 @@
         =========================================================
        -->
 
-      <ul class="nav navbar-nav" *ngIf="identity.role === 'ADMIN_ROLE'">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="identity.role === 'ADMIN_ROLE'">
+        ..
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle">
+                Mantenimientos
+              </a>
+              <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/planes']">Planes</a>
+                <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/bolsas']">Bolsas</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-        <li>
-          <span class="glyphicon glyphicon-home"> </span>
-          <a [routerLink]="['/home']" [routerLinkActive]="['active']"> Inicio Maestro </a>
-        </li>
 
-        <li>
-          <a [routerLink]="['/registrar']" [routerLinkActive]="['active']"> otro </a>
-          <span class="glyphicon glyphicon-user"> </span>
-        </li>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="identity.role === 'ADMIN_ROLE'">
+        ..
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle">
+                {{ identity.nombre }}
+              </a>
+              <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-        <li>
-          <a [routerLink]="['/registro-curso']" [routerLinkActive]="['active']"> Maestro </a>
-          <span class="glyphicon glyphicon-plus"> </span>
-        </li>
 
-      </ul>
 
       <br>
       <hr>
@@ -164,23 +185,7 @@
 
 
 
-      <ul class="nav navbar navbar-right" *ngIf="identity">
 
-        <li class="dropdown open">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            {{ identity.nombre }} <span class="caret"> </span> </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#">
-                <span class="glyphicon glyphicon-log-out"></span>
-                Cerrar Sesion
-              </a>
-            </li>
-
-          </ul>
-        </li>
-
-      </ul>
 
     </div>
   </nav>

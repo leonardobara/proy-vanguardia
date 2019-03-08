@@ -30,6 +30,7 @@ export class AutenticadoComponent implements OnInit {
   solicitudes: Solicitud[] = [];
   imagenSubir: File;
   imagenTemp: string;
+  isOpen = false;
 
   constructor(public usuarioServ: UsuarioService, public carreraServ: CarreraService,
     public http: HttpClient, public subirServ: SubirArchivoService, public solicitudServ: SolicitudesService,
@@ -118,6 +119,15 @@ export class AutenticadoComponent implements OnInit {
       console.log(error);
 
     }
+  }
+
+  toggleMenu() {
+    if (this.isOpen === false) {
+      this.isOpen = true;
+    } else {
+      this.isOpen = false;
+    }
+    console.log(this.isOpen);
   }
 
 

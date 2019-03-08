@@ -13,6 +13,11 @@ import { RegisterComponent } from './login/register.component';
 import { AutenticadoComponent } from './autenticado/autenticado.component';
 import { LoginComponent } from './login/login.component';
 import { CarrerasComponent } from './carreras/carreras.component';
+import { CitaComponent } from './cita/cita.component';
+import { PlanesComponent } from './planes/planes.component';
+import { PlanComponent } from './planes/plan.component';
+import { BolsasComponent } from './bolsas/bolsas.component';
+import { BolsaComponent } from './bolsas/bolsa.component';
 
 // Services
 import { CarreraService } from './services/carrera.service';
@@ -20,7 +25,12 @@ import { ArchivoService } from './services/archivo.service';
 import { UsuarioService } from './services/usuario.service';
 import { SubirArchivoService } from './services/subir-archivo.service';
 import { SolicitudesService } from './services/solicitudes.service';
-import { CitaComponent } from './cita/cita.component';
+import { CitaService } from './services/cita.service';
+
+// Directive
+import { DropdownDirective } from './shared/dropdown.directive';
+
+
 
 @NgModule({
   declarations: [
@@ -30,7 +40,12 @@ import { CitaComponent } from './cita/cita.component';
     CarrerasComponent,
     RegisterComponent,
     AutenticadoComponent,
-    CitaComponent
+    CitaComponent,
+    PlanesComponent,
+    PlanComponent,
+    BolsasComponent,
+    BolsaComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
@@ -40,7 +55,7 @@ import { CitaComponent } from './cita/cita.component';
     APP_ROUTES,
     FileUploadModule
   ],
-  providers: [CarreraService, ArchivoService, UsuarioService, SubirArchivoService, SolicitudesService],
+  providers: [CarreraService, ArchivoService, UsuarioService, SubirArchivoService, SolicitudesService, CitaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
