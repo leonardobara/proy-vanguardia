@@ -60,7 +60,7 @@ exports.putBolsa = (req, res) => {
         }
 
         bolsaUpdated.nombre = body.nombre;
-        carreraUpdated.save();
+        bolsaUpdated.save();
 
         res.status(201).json({
             ok: true,

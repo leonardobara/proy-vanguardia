@@ -12,12 +12,17 @@ let solicitudSchema = new Schema({
         ref: 'Carrera',	
         required: [true, 'El id de carrera es un campo necesario']
     }, */
+    estado: {
+        type: Boolean,
+        default: false
+    },
     alumno: {
         type: Schema.Types.ObjectId,
         unique: true,
         ref: 'Usuario',
         required: [true, 'El id de alumno es un campo necesario']
     }
+
 
 });
 

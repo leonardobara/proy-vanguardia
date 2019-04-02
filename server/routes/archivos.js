@@ -5,7 +5,7 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 
-app.get('/:carrera/:pdf', (req, res, next) => {
+app.get('/planes/:carrera/:pdf', (req, res, next) => {
 
     var carrera = req.params.carrera;
     var pdf = req.params.pdf;
@@ -38,11 +38,11 @@ app.get('/bolsas/:bolsa/:pdf', (req, res, next) => {
 
 });
 
-app.get('/solicitudes/todas/:pdf', (req, res, next) => {
+app.get('/request/todas/:pdf', (req, res, next) => {
 
     var pdf = req.params.pdf;
 
-    var pathArchivo = path.resolve(__dirname, `/solicitudes/todas/${pdf}`);
+    var pathArchivo = path.resolve(__dirname, `/request/todas/${pdf}`);
 
     if (fs.existsSync(pathArchivo)) {
         res.sendFile(pathArchivo);

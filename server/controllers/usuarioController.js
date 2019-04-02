@@ -26,7 +26,7 @@ exports.postUsuario = (req, res) => {
 
         res.status(201).json({
             ok: true,
-            mestro: usuarioSaved
+            usuario: usuarioSaved
         });
 
     });
@@ -94,7 +94,7 @@ exports.getUsuarios = (req, res) => {
 
         res.status(200).json({
             ok: true,
-            usuario: usuarios
+            usuarios: usuarios
         });
 
     });

@@ -114,7 +114,7 @@ app.put('/upload2/:bolsa/:id', (req, res) => {
 
 });
 
-app.put('/upload3/:alumno', (req, res) => {
+app.post('/upload3/:alumno', (req, res) => {
     // var carrera = req.params.carrera;
     var alumno = req.params.alumno;
 
@@ -147,7 +147,7 @@ app.put('/upload3/:alumno', (req, res) => {
 
 
     // Mover el archivo del temporal a un path
-    var path = `/solicitudes/todas/${nombreArchivo}`;
+    var path = `/request/todas/${nombreArchivo}`;
 
 
     archivo.mv(path, err => {
@@ -264,78 +264,138 @@ function subirPorTipo2(bolsa, id, nombreArchivo, res) {
         });
     }
 
+    if (bolsa === 'computacion1') {
+
+
+        Bolsa.findById(id, (err, bolsa) => {
+
+            if (!bolsa) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'NO existe'
+
+                });
+            }
+
+            var oldPath = '/bolsas/computacion1/' + bolsa.bolsa;
+
+            // Si existe, elimina archivo anterior
+            if (fs.existsSync(oldPath)) {
+                fs.unlinkSync(oldPath);
+            }
+
+            bolsa.bolsa = nombreArchivo;
+
+            bolsa.save((err, bolsaActualizada) => {
+                return res.status(200).json({
+                    ok: true,
+                    mensaje: 'Bolsa estudiantil actualizada',
+                    bolsa: bolsaActualizada
+                });
+            });
+
+        });
+    }
+
+    if (bolsa === 'computacion2') {
+
+
+        Bolsa.findById(id, (err, bolsa) => {
+
+            if (!bolsa) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'NO existe'
+
+                });
+            }
+
+            var oldPath = '/bolsas/computacion2/' + bolsa.bolsa;
+
+            // Si existe, elimina archivo anterior
+            if (fs.existsSync(oldPath)) {
+                fs.unlinkSync(oldPath);
+            }
+
+            bolsa.bolsa = nombreArchivo;
+
+            bolsa.save((err, bolsaActualizada) => {
+                return res.status(200).json({
+                    ok: true,
+                    mensaje: 'Bolsa estudiantil actualizada',
+                    bolsa: bolsaActualizada
+                });
+            });
+
+        });
+    }
+
+    if (bolsa === 'contabilidad1') {
+
+
+        Bolsa.findById(id, (err, bolsa) => {
+
+            if (!bolsa) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'NO existe'
+
+                });
+            }
+
+            var oldPath = '/bolsas/contabilidad1/' + bolsa.bolsa;
+
+            // Si existe, elimina archivo anterior
+            if (fs.existsSync(oldPath)) {
+                fs.unlinkSync(oldPath);
+            }
+
+            bolsa.bolsa = nombreArchivo;
+
+            bolsa.save((err, bolsaActualizada) => {
+                return res.status(200).json({
+                    ok: true,
+                    mensaje: 'Bolsa estudiantil actualizada',
+                    bolsa: bolsaActualizada
+                });
+            });
+
+        });
+    }
+
+    if (bolsa === 'administracion1') {
+
+
+        Bolsa.findById(id, (err, bolsa) => {
+
+            if (!bolsa) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'NO existe'
+
+                });
+            }
+
+            var oldPath = '/bolsas/administracion1/' + bolsa.bolsa;
+
+            // Si existe, elimina archivo anterior
+            if (fs.existsSync(oldPath)) {
+                fs.unlinkSync(oldPath);
+            }
+
+            bolsa.bolsa = nombreArchivo;
+
+            bolsa.save((err, bolsaActualizada) => {
+                return res.status(200).json({
+                    ok: true,
+                    mensaje: 'Bolsa estudiantil actualizada',
+                    bolsa: bolsaActualizada
+                });
+            });
+
+        });
+    }
 }
-/* const bolsas = await Bolsa.find();
-const bolsasNames = bolsas.map(bolsa1 => bolsa1.nombre);
-const isHere = bolsasNames.includes(bolsas);
- 
-if (isHere) {
-    const bolsaObj = await Bolsa.find({ nombre: bolsa });
-    if (!bolsaObj) {
-        return res.status(400).json({
-            ok: false,
-            mensaje: 'NO existe'
-        });
-    }
- 
-    const oldPath = `/bolsas/${bolsaObj[0].nombre}/${bolsaObj[0].bolsa}`;
-    if (fs.existsSync(oldPath)) {
-        console.log(true)
-        fs.unlinkSync(oldPath);
-    }
- 
-    bolsaObj[0].bolsa = nombreArchivo;
-    await bolsaObj[0].save();
-    bolsaObj[0].save((err, bolsaActualizada) => {
- 
-        if (err) {
-            console.log(err);
- 
-        }
- 
-        res.status(200).json({
-            ok: true,
-            mensaje: 'Bolsa de estudios actualizada',
-            bolsa: bolsaActualizada
-        });
-    });
-} */
-
-/*  console.log(id);
- if (bolsa === 'electricidad1') {
-     
-     
-     Bolsa.findById(id, (err, bolsa) => {
- 
-         if (!bolsa) {
-             return res.status(400).json({
-                 ok: false,
-                 mensaje: 'NO existe'
-                 
-             });
-         }
- 
-         var oldPath = '/bolsas/electricidad1/' + bolsa.bolsa;
- 
-         // Si existe, elimina archivo anterior
-         if (fs.existsSync(oldPath)) {
-             fs.unlinkSync(oldPath);
-         }
-             
-             bolsa.bolsa = nombreArchivo;
- 
-             bolsa.save( (err, bolsaActualizada) => {
-                 return res.status(200).json({
-                     ok: true,
-                     mensaje: 'Bolsa estudiantil actualizada',
-                     bolsa: bolsaActualizada
-                 });
-             });
- 
-     });
- } */
-
-
 
 async function subirPorTipo(carrera, nombreArchivo, res) {
     const carreras = await Carrera.find();

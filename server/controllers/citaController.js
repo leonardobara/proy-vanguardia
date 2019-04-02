@@ -47,8 +47,31 @@ exports.postCita = async (req, res) => {
             solicitud: idSolicitud
         });
 
-        await cita.save();
-        res.sendStatus(201);
+
+        cita.save((err, citaBDD) => {
+            if (err) {
+                res.status(500).json({
+                    ok: false,
+                    err: err
+                });
+            }
+
+            if (!citaBDD) {
+                res.status(400).json({
+                    ok: false,
+                    err: err
+                });
+            }
+
+
+            res.status(201).json({
+                ok: true,
+                cita: citaBDD
+            });
+        });
+
+        /* await cita.save();
+        res.sendStatus(201); */
     } catch (error) {
         console.log(error);
 
