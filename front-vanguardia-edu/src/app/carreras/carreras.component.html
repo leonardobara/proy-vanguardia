@@ -1,17 +1,54 @@
-<div class="card" style="width: 58rem; height: 32rem;">
+<!DOCTYPE html>
+<html>
 
-  <div class="card-content">
-    <h5 class="card-title">{{ carreraBd.nombre }}</h5>
-    <div class="col-md-12">
-      <div class="col-md-6">
-        <h3> Descripcion de carrera: </h3>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+</head>
 
-        {{ carreraBd.descripcion }}
+<body>
 
-      </div>
+  <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-primary">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand"></a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+      <ul class="navbar-nav flex-row w-100">
+        <li class="nav-item px-2 mr-auto active">
+          <a class="nav-link"><span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">INICIO</a>
+        </li>
+      </ul>
     </div>
+  </nav>
+  <br />
+  <br />
 
-    <a class="btn btn-primary" (click)="traerPlanEstudios(carreraBd)">Descargar Plan de Estudios</a>
-    <a class="btn btn-secondary" (click)="traerBolsa()">Descargar formulario</a>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title alert-success">{{ carreraBd.nombre }}</h5>
+      <h6> Descripcion de carrera: </h6>
+      <p class="card-text">{{ carreraBd.descripcion }}</p>
+      <a class="btn btn-primary px-2" (click)="traerPlanEstudios(carreraBd)">Descargar Plan de Estudios</a><br /><br />
+      <a class="btn btn-secondary px-2" (click)="traerBolsa()">Descargar formulario</a>
+    </div>
+    <br />
+    <br />
   </div>
-</div>
+</body>
+
+</html>

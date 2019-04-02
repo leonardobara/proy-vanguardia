@@ -1,0 +1,49 @@
+html{
+    width: 100;
+    height: 100;
+}
+
+body{
+
+    background:#8ba987 url('https://3.bp.blogspot.com/--smEYbO2Kdg/V-KWvtPq7kI/AAAAAAAAC9M/wL3sQXsDmRkPp-8wBdGg6veyd1qZGY1BgCEw/s1600/harvard%2Buniversity%2BHD%2Bwallpaper%2B2.jpg') no-repeat center center;
+
+    background-size:100% 100%;
+
+
+}
+
+
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0.3rem;
+  background-color:none;
+
+}
+.hd1{
+    color: gold;
+}
+
+
+h1{
+    color: #2c5176;
+    font-weight: 500;
+}
+
+h3{
+    margin-top: 0px;
+    margin-bottom:10px;
+    padding: 0px;
+}
+
+h5{
+    margin-top: 0px;
+    margin-bottom:10px;
+    padding: 0px;
+}
+
+.hd2{
+    color: gold;
+    font-size: 175%;
+}
+

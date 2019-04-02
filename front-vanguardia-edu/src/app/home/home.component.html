@@ -1,49 +1,63 @@
-<div class="col-md-8">
-  <h1 style=" color: #2c5176; font-weight: 500;">Instituto Taular, sabemos que <b>¡tu puedes!</b></h1>
-  <p><b>Conoce la oferta educativa que te convertirá en el futuro de Honduras.</b></p>
-  <h3 class="muted-red" style="margin-top: 0px; margin-bottom:10px; padding: 0px;">Carreras Presenciales</h3>
-  <h5 class="muted-blue" style="margin-top: 0px; margin-bottom:10px; padding: 0px;">Tecnicos</h5><a class="btn btn-md btn-default"
-    style="min-width:250px; text-align:left; color:#333; text-transform: capitalize;">
+<!DOCTYPE html>
+<html>
 
-  </a>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+</head>
 
-</div>
+<body>
 
 
-<a *ngFor="let carrera of carreras" class="btn btn-md btn-default" style="min-width:220px; text-align:left; color:#333; text-transform: capitalize;"
-  routerLinkActive="active" [routerLink]="['/carreras', carrera._id]">
-  <i class="fa fa-sticky-note" aria-hidden="true" style="padding-top:5px;"></i>&nbsp;&nbsp;{{ carrera.nombre }}</a>
+  <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-dark">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand"></a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+      <ul class="navbar-nav flex-row w-100">
+        <li class="nav-item px-2 mr-auto active">
+          <a class="nav-link"><span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">LOGIN</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link " [routerLink]="['/register']" [routerLinkActive]="['active']">REGISTRO</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br />
+  <br />
+
+  <div style="background:transparent !important" class="jumbotron">
+    <h1 class="hd1">Instituto Taular, sabemos que <b>¡tú puedes!</b></h1>
+    <p class="lead hd1">Conoce la oferta educativa que te convertirá en el futuro de Honduras</p>
+    <hr class="my-4">
+    <p class="hd2"><b>Nuestras Carreras</b></p>
 
 
-<div class="row">
-  <div class="col-md-8">
-    <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearCarrera()">
+    <a *ngFor="let carrera of carreras" class="btn btn-md btn-default" style="min-width:220px; text-align:left; color: lightyellow; text-transform: capitalize;"
+      routerLinkActive="active" [routerLink]="['/carreras', carrera._id]">
+      <i class="fa fa-sticky-note" aria-hidden="true" style="padding-top:5px;"></i>&nbsp;&nbsp;<b>{{ carrera.nombre }}</b></a><br /><br />
 
-      <div class="form-group">
-        <div class="col-xs-12">
-          <input formControlName="nombre" name="nombre" class="form-control" type="text" required placeholder="Carrera">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-xs-12">
-          <input formControlName="descripcion" name="descripcion" class="form-control" type="text" required placeholder="Descripcion">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-xs-12">
-          <input formControlName="plan" name="plan" class="form-control" type="text" required placeholder="Plan">
-        </div>
-      </div>
-
-      <div class="form-group text-center m-t-20">
-        <div class="col-xs-6">
-          <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit"> Crear
-          </button>
-        </div>
-      </div>
-
-    </form>
   </div>
-</div>
+  <br />
+  <br />
+
+
+
+</body>
+
+</html>

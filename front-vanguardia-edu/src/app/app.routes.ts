@@ -13,6 +13,8 @@ import { PlanesComponent } from './planes/planes.component';
 import { PlanComponent } from './planes/plan.component';
 import { BolsasComponent } from './bolsas/bolsas.component';
 import { BolsaComponent } from './bolsas/bolsa.component';
+import { CrearCarreraComponent } from './crear-carrera/crear-carrera.component';
+import { CrearBolsaComponent } from './crear-bolsa/crear-bolsa.component';
 
 
 const appRoutes: Routes = [
@@ -22,11 +24,13 @@ const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'autenticado', component: AutenticadoComponent },
     { path: 'carreras/:id', component: CarrerasComponent },
-    { path: 'cita/:id', component: CitaComponent },
+    { path: 'cita/:id/:solicitud', component: CitaComponent },
     { path: 'planes', component: PlanesComponent },
     { path: 'mantenimiento/plan/:id', component: PlanComponent },
     { path: 'bolsas', component: BolsasComponent },
     { path: 'mantenimiento/bolsa/:bolsa/:id', component: BolsaComponent },
+    { path: 'crear/carrera', component: CrearCarreraComponent },
+    { path: 'crear/bolsa', component: CrearBolsaComponent },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

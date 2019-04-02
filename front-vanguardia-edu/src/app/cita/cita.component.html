@@ -1,86 +1,84 @@
-<section class="content-header">
-  <h1 style="text-align: center">RESERVA DE CITAS</h1>
-</section>
+<!DOCTYPE html>
+<html>
 
-<section class="content">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-  <div class="row">
-    <!--left column -->
-    <div class="col-md-6">
-      <div class="box box-primary">
-        <div class="box-body">
-          <div class="form-group">
-            <label>DOCUMENTO DE IDENTIDAD</label>
-          </div>
+<body>
 
-        </div>
-        <br>
+  <div style="background:transparent !important" class="jumbotron">
+    <h3><b>Fecha y Hora de la cita.</b></h3>
+    <!--SELECCIONAR HORARIO DE ATENCION -->
+    <div class="row">
+
+      <!--rigth column -->
+      <div class="col-md-16">
+        <div class="box box-primary">
+          <div class="box-body">
+            <label type="text txt-white"><b>FECHA</b></label>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+
+              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="citar()">
+                <div class="form-group">
+                  <div class="col-xs-12">
+                    <input formControlName="fecha" name="fecha" class="form-control" type="datetime-local" required>
+                  </div>
+                </div>
+
+                <div id="seccionSolicitud">
+                  <select (change)="cambioEstado($event.target.value)">
+                    <option value=""></option>
+                    <option [value]="esto[0]"> {{ esto[0] }} </option>
+                    <option [value]="esto[1]"> {{ esto[1] }} </option>
+                  </select>
+                </div>
+                <hr>
+
+                <div class="form-group text-left m-t-10">
+                  <div class="col-xs-6">
+                    <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" (click)="onBack()">
+                      <i class="fa fa-arrow-left"></i> Regresar
+                    </button>
+                  </div>
+                </div>
 
 
-      </div>
-      <!-- </form> -->
-    </div>
-  </div>
-  <!--rigth column -->
-  <div class="col-md-6">
-    <div class="box box-primary">
-      <br>
-      <div class="box-body">
 
+                <div class="form-group text-center m-t-20">
+                  <div class="col-xs-6">
+                    <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit"
+                      [disabled]="estado === 'Rechazar' || estado === ''">
+                      Crear
+                    </button>
+                  </div>
+                </div>
 
-      </div>
-    </div>
-  </div>
-  <section class="content-header">
-    <h3 align="center">Fecha y Hora de la cita.</h3>
-  </section>
-  <!--SELECCIONAR HORARIO DE ATENCION -->
-  <div class="row">
-    <!--left column -->
-    <div class="col-md-4">
-      <div class="box box-primary">
-        <!-- <form role="form"> -->
-      </div>
-    </div>
-    <!--rigth column -->
-    <div class="col-md-4">
-      <div class="box box-primary">
-        <div class="box-body">
-          <label>FECHA</label>
-          <div class="input-group">
-            <div class="input-group-addon">
-              <i class="fa fa-calendar"></i>
+              </form>
+
             </div>
 
-            <form ngNativeValidate [formGroup]="forma" (ngSubmit)="citar()">
-              <div class="form-group">
-                <div class="col-xs-12">
-                  <input formControlName="fecha" name="fecha" class="form-control" type="datetime-local" required>
-                </div>
-              </div>
-
-              <div class="form-group text-left m-t-10">
-                <div class="col-xs-6">
-                  <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" (click)="onBack()">
-                    <i class="fa fa-arrow-left"></i> Regresar
-                  </button>
-                </div>
-              </div>
-
-              <div class="form-group text-center m-t-20">
-                <div class="col-xs-6">
-                  <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">
-                    Crear
-                  </button>
-                </div>
-              </div>
-            </form>
 
           </div>
         </div>
       </div>
+
     </div>
 
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
   </div>
 
-</section>
+
+</body>
+
+</html>

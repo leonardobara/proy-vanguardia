@@ -29,6 +29,8 @@ import { CitaService } from './services/cita.service';
 
 // Directive
 import { DropdownDirective } from './shared/dropdown.directive';
+import { CrearCarreraComponent } from './crear-carrera/crear-carrera.component';
+import { CrearBolsaComponent } from './crear-bolsa/crear-bolsa.component';
 
 
 
@@ -45,7 +47,9 @@ import { DropdownDirective } from './shared/dropdown.directive';
     PlanComponent,
     BolsasComponent,
     BolsaComponent,
-    DropdownDirective
+    DropdownDirective,
+    CrearCarreraComponent,
+    CrearBolsaComponent
   ],
   imports: [
     BrowserModule,

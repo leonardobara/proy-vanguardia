@@ -15,6 +15,7 @@ import { Solicitud } from '../models/solicitud.model';
 
 import { saveAs } from 'file-saver';
 
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-autenticado',
@@ -84,6 +85,7 @@ export class AutenticadoComponent implements OnInit {
     console.log(this.imagenSubir);
 
     this.subirServ.subirArchivo(this.imagenSubir, this.identity._id);
+    swal('Solicitud enviada!', 'Todo Bien', 'success');
 
   }
 
@@ -93,8 +95,8 @@ export class AutenticadoComponent implements OnInit {
 
       getSolicitudes.subscribe((resp: any) => {
         console.log(resp);
-        for (let index = 0; index < resp.solicitud.length; index++) {
-          this.solicitudes[index] = resp.solicitud[index];
+        for (let index = 0; index < resp.solicitudes.length; index++) {
+          this.solicitudes[index] = resp.solicitudes[index];
         }
       });
 
@@ -106,7 +108,7 @@ export class AutenticadoComponent implements OnInit {
   obtenerArchivoSolicitud(solicitud) {
     try {
       const traerBolsaAlumno = this.archivoServ.getBolsaAlumno(solicitud.bolsa);
-      const fileName = 'http://localhost:3000/solicitudes/todas/' + solicitud.bolsa;
+      const fileName = 'http://localhost:3000/request/todas/' + solicitud.bolsa;
 
       console.log(solicitud);
 
@@ -128,6 +130,10 @@ export class AutenticadoComponent implements OnInit {
       this.isOpen = false;
     }
     console.log(this.isOpen);
+  }
+
+  logout() {
+    this.usuarioServ.logout();
   }
 
 

@@ -25,7 +25,7 @@ export class CitaService {
         return this.http.post(this.urlCita + '/' + id, cita)
             .pipe(
                 map((resp: any) => {
-                    return cita;
+                    return resp.fecha;
                 }),
                 catchError((e: any) => throwError(e))
             );

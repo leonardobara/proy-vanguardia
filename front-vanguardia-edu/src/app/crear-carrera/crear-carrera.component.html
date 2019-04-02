@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="form-body">
+
+      <div class="tab-content">
+        <div class="tab-pane fadeIn active">
+          <div class="innter-form">
+
+            <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearCarrera()">
+
+              <div class="form-group">
+                <div class="col-xs-12">
+                  <input formControlName="nombre" name="nombre" class="form-control" type="text" required placeholder="Carrera">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-12">
+                  <input formControlName="descripcion" name="descripcion" class="form-control" type="text" required
+                    placeholder="Descripcion">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-12">
+                  <input formControlName="plan" name="plan" class="form-control" type="text" required placeholder="Plan">
+                </div>
+              </div>
+
+              <div class="form-group text-center m-t-20">
+                <div class="col-xs-6">
+                  <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">
+                    Crear
+                  </button>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

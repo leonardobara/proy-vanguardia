@@ -19,7 +19,7 @@ export class ArchivoService {
 
 
 
-    return this.http.get(this.urlArchivos + carrera + '/' + nombreArc, {
+    return this.http.get(this.urlArchivos + 'planes/' + carrera + '/' + nombreArc, {
       responseType: 'blob',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     }).pipe(
@@ -54,7 +54,7 @@ export class ArchivoService {
 
   getBolsaAlumno(nombreArc: string) {
 
-    return this.http.get(this.urlArchivos + 'solicitudes/todas/' + nombreArc, {
+    return this.http.get(this.urlArchivos + 'request/todas/' + nombreArc, {
       responseType: 'blob',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     }).pipe(

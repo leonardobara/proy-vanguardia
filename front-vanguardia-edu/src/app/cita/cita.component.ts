@@ -1,11 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+// Services
 import { UsuarioService } from '../services/usuario.service';
 import { CitaService } from '../services/cita.service';
+import { SolicitudesService } from '../services/solicitudes.service';
 
+// Models
 import { Cita } from '../models/cita.model';
+
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Solicitud } from '../models/solicitud.model';
+
+import swal from 'sweetalert';
+
 
 
 @Component({
@@ -16,19 +24,28 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 export class CitaComponent implements OnInit {
 
   public id;
+  public idSolicitud;
   alumno: any;
+  solicitud: any;
+  esto: string[] = [
+    'Rechazar', 'Aceptar'
+  ];
+  estado = '';
   forma: FormGroup;
 
   constructor(public usuarioServ: UsuarioService, public router: Router,
-    public actRoute: ActivatedRoute, public citaServ: CitaService) { }
+    public actRoute: ActivatedRoute, public citaServ: CitaService, public solicitudServ: SolicitudesService) { }
 
   ngOnInit() {
     this.id = this.actRoute.snapshot.paramMap.get('id');
+    this.idSolicitud = this.actRoute.snapshot.paramMap.get('solicitud');
     this.traerAlumno();
-
     this.forma = new FormGroup({
       fecha: new FormControl('', Validators.required)
     });
+    this.traerSolicitud();
+    console.log(this.esto);
+
   }
 
 
@@ -50,6 +67,24 @@ export class CitaComponent implements OnInit {
     }
   }
 
+  traerSolicitud() {
+
+    try {
+      const traerSolicitud = this.solicitudServ.getSolicitud(this.idSolicitud);
+      console.log(traerSolicitud);
+
+      traerSolicitud.subscribe(
+        (resp: any) => {
+          console.log(resp);
+          this.solicitud = resp.solicitud;
+        });
+      console.log(this.solicitud);
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+
   citar() {
     if (this.forma.invalid) {
       return;
@@ -59,13 +94,19 @@ export class CitaComponent implements OnInit {
       this.forma.value.fecha
     );
 
-    this.citaServ.agendarCita(cita, this.id).subscribe(resp => {
+    this.citaServ.agendarCita(cita, this.id).subscribe((resp: any) => {
+      swal('Cita agendada!', 'Todo Bien', 'success');
       console.log(resp);
     });
   }
 
   onBack() {
     this.router.navigate(['/autenticado']);
+  }
+
+  cambioEstado(value) {
+    console.log(value);
+    this.estado = value;
   }
 
 }

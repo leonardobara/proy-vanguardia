@@ -1,7 +1,6 @@
-<div class="col-md-8">
+<div class="alert alert-success" role="alert">
   <h3>Seleccione carrera a cambiar bolsa estudiantil</h3>
 </div>
-
 
 <a *ngFor="let bolsa of bolsas" class="btn btn-md btn-default" style="min-width:220px; text-align:left; color:#333; text-transform: capitalize;"
   routerLinkActive="active" [routerLink]="['/mantenimiento/bolsa', bolsa.nombre, bolsa._id]">

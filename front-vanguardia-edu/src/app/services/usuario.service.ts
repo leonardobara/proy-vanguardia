@@ -7,6 +7,7 @@ import { Observable, throwError } from 'rxjs';
 
 // import swal from "sweetalert";
 import { Usuario } from '../models/usuario.model';
+import { Router } from '@angular/router';
 
 @Injectable({
     // tslint:disable-next-line:quotemark
@@ -19,7 +20,7 @@ export class UsuarioService {
     private urlLogin = 'http://localhost:3000/login';
     private urlAlumno = 'http://localhost:3000/usuario';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, public router: Router) { }
 
 
     login(usuario: Usuario) {
@@ -35,6 +36,15 @@ export class UsuarioService {
             );
     }
 
+    logout() {
+
+        this.identity = null;
+        localStorage.removeItem('identity');
+
+        this.router.navigate(['/login']);
+
+    }
+
     getIdentity() {
         const identity = JSON.parse(localStorage.getItem('identity'));
         if (identity !== 'undefined') {
@@ -43,6 +53,15 @@ export class UsuarioService {
             this.identity = null;
         }
         return this.identity;
+    }
+
+    postAlumno(usuario: Usuario): Observable<any> {
+        return this.http.post(this.urlAlumno, usuario).pipe(
+            map((resp: any) => {
+                return resp;
+            }),
+            catchError((e: any) => throwError(e))
+        );
     }
 
     getAlumno(id: string) {

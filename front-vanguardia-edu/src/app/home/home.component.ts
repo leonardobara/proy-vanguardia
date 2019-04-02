@@ -20,29 +20,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.onLoadCarreras();
-    this.forma = new FormGroup({
-      nombre: new FormControl('', Validators.required),
-      descripcion: new FormControl('', Validators.required),
-      plan: new FormControl('', Validators.required)
-    });
-
     console.log(this.carreras);
-  }
-
-  crearCarrera() {
-    if (this.forma.invalid) {
-      return;
-    }
-
-    const carrera = new Carrera(
-      this.forma.value.nombre,
-      this.forma.value.descripcion,
-      this.forma.value.plan
-    );
-
-    this.carreraServ.crearCarrera(carrera).subscribe(resp => {
-      console.log(resp);
-    });
   }
 
   onLoadCarreras() {

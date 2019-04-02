@@ -7,6 +7,7 @@ import { tap, catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 // import swal from "sweetalert";
+import { Bolsa } from '../models/bolsa.model';
 
 @Injectable({
   // tslint:disable-next-line:quotemark
@@ -33,6 +34,15 @@ export class CarreraService {
 
   crearCarrera(carrera: Carrera): Observable<any> {
     return this.http.post(this.urlCarrera, carrera).pipe(
+      map((resp: any) => {
+        return resp.nombre;
+      }),
+      catchError((e: any) => throwError(e))
+    );
+  }
+
+  crearBolsa(bolsa: Bolsa): Observable<any> {
+    return this.http.post(this.urlBolsa, bolsa).pipe(
       map((resp: any) => {
         return resp.nombre;
       }),

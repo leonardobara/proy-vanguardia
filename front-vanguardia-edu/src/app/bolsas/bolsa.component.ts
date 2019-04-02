@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { SubirArchivoService } from '../services/subir-archivo.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import swal from 'sweetalert';
+
 @Component({
   selector: 'app-bolsa',
   templateUrl: './bolsa.component.html',
@@ -43,6 +45,7 @@ export class BolsaComponent implements OnInit {
     console.log(this.imagenSubir);
 
     this.subirServ.subirArchivoBolsa(this.imagenSubir, this.carrera, this.bolsa);
+    swal('Bolsa Actualizada!', 'Todo Bien', 'success');
 
   }
 

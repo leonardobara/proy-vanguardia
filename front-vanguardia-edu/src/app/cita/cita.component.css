@@ -1,0 +1,31 @@
+body,html{
+    background-image: url("http://nymarketing.org/wp-content/uploads/2017/03/working-1219889_1920-featured-image.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+h1{
+    text-align: center;
+}
+
+.box-body{
+    text-align: center;
+    font: italic;
+    
+}
+
+
+.jumbotron{ 
+    color: #FFFFFF; 
+    background-color:none;
+    } 
+
+b {
+    font-size: 25px;
+    color: darkorange;
+}
+
+form {
+    text-align: center;
+}
+

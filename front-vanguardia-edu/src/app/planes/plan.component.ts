@@ -3,6 +3,7 @@ import { SubirArchivoService } from '../services/subir-archivo.service';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-plan',
@@ -41,6 +42,7 @@ export class PlanComponent implements OnInit {
     console.log(this.imagenSubir);
 
     this.subirServ.subirArchivoPlan(this.imagenSubir, this.carrera);
+    swal('Plan Actualizado!', 'Todo Bien', 'success');
 
   }
 
